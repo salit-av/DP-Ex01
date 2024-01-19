@@ -54,10 +54,16 @@ namespace BasicFacebookFeatures
                 m_User = m_LoginResult.LoggedInUser;
                 buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
                 buttonLogin.BackColor = Color.LightGreen;
-                buttonLogin.Enabled = false;
-                buttonLogout.Enabled = true;
-                buttonBirthday.Enabled = true;
+                enableButtonsAfterLogin();
             }
+        }
+
+        private void enableButtonsAfterLogin()
+        {
+            comboBoxStatistical.Enabled = true;
+            buttonLogin.Enabled = false;
+            buttonLogout.Enabled = true;
+            buttonBirthday.Enabled = true;
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -159,8 +165,9 @@ namespace BasicFacebookFeatures
                     DateTime threeMonthsAgo = now.AddMonths(-3);
                     return postDate > threeMonthsAgo && postDate <= now;
 
-                case "This Year":
-                    return postDate.Year == now.Year;
+                case "Last 12 Months":
+                    DateTime twelveMonthsAgo = now.AddMonths(-12);
+                    return postDate > twelveMonthsAgo && postDate <= now;
 
                 case "Last Five Years":
                     DateTime fiveYearsAgo = now.AddYears(-5);
@@ -236,6 +243,7 @@ namespace BasicFacebookFeatures
         private void buttonNewGuess_Click(object sender, EventArgs e)
         {
             setRandomPost();
+            comboBoxGuessPostYear.Text = "Select Year";
             labelSelectedPost.ForeColor = Color.Black;
             labelSelectedPost.Text = (m_PostToGuess == null) ? "No posts exists!" : m_PostToGuess.Message;
         }

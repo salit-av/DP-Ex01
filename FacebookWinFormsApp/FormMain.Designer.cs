@@ -53,7 +53,7 @@ namespace BasicFacebookFeatures
             this.comboBoxGuessPostYear = new System.Windows.Forms.ComboBox();
             this.labelGuessPost = new System.Windows.Forms.Label();
             this.labelStatisticalExplain = new System.Windows.Forms.Label();
-            this.labelStatistical = new System.Windows.Forms.Label();
+            this.labelPostsData = new System.Windows.Forms.Label();
             this.buttonStatistical = new System.Windows.Forms.Button();
             this.labelStatisicalResult = new System.Windows.Forms.Label();
             this.comboBoxStatistical = new System.Windows.Forms.ComboBox();
@@ -271,7 +271,7 @@ namespace BasicFacebookFeatures
             this.panel2.Controls.Add(this.comboBoxGuessPostYear);
             this.panel2.Controls.Add(this.labelGuessPost);
             this.panel2.Controls.Add(this.labelStatisticalExplain);
-            this.panel2.Controls.Add(this.labelStatistical);
+            this.panel2.Controls.Add(this.labelPostsData);
             this.panel2.Controls.Add(this.buttonStatistical);
             this.panel2.Controls.Add(this.labelStatisicalResult);
             this.panel2.Controls.Add(this.comboBoxStatistical);
@@ -363,27 +363,27 @@ namespace BasicFacebookFeatures
             // 
             this.labelStatisticalExplain.AutoSize = true;
             this.labelStatisticalExplain.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatisticalExplain.Location = new System.Drawing.Point(72, 75);
+            this.labelStatisticalExplain.Location = new System.Drawing.Point(89, 75);
             this.labelStatisticalExplain.Name = "labelStatisticalExplain";
             this.labelStatisticalExplain.Size = new System.Drawing.Size(415, 18);
             this.labelStatisticalExplain.TabIndex = 63;
             this.labelStatisticalExplain.Text = "Find out how many post you post at the selected time ";
             // 
-            // labelStatistical
+            // labelPostsData
             // 
-            this.labelStatistical.AutoSize = true;
-            this.labelStatistical.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatistical.Location = new System.Drawing.Point(121, 30);
-            this.labelStatistical.Name = "labelStatistical";
-            this.labelStatistical.Size = new System.Drawing.Size(287, 31);
-            this.labelStatistical.TabIndex = 57;
-            this.labelStatistical.Text = "Statistical posts data";
+            this.labelPostsData.AutoSize = true;
+            this.labelPostsData.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPostsData.Location = new System.Drawing.Point(205, 30);
+            this.labelPostsData.Name = "labelPostsData";
+            this.labelPostsData.Size = new System.Drawing.Size(153, 31);
+            this.labelPostsData.TabIndex = 57;
+            this.labelPostsData.Text = "Posts data";
             // 
             // buttonStatistical
             // 
             this.buttonStatistical.Enabled = false;
             this.buttonStatistical.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStatistical.Location = new System.Drawing.Point(307, 107);
+            this.buttonStatistical.Location = new System.Drawing.Point(331, 107);
             this.buttonStatistical.Name = "buttonStatistical";
             this.buttonStatistical.Size = new System.Drawing.Size(101, 37);
             this.buttonStatistical.TabIndex = 58;
@@ -397,22 +397,23 @@ namespace BasicFacebookFeatures
             this.labelStatisicalResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStatisicalResult.Location = new System.Drawing.Point(174, 172);
             this.labelStatisicalResult.Name = "labelStatisicalResult";
-            this.labelStatisicalResult.Size = new System.Drawing.Size(184, 31);
+            this.labelStatisicalResult.Size = new System.Drawing.Size(213, 31);
             this.labelStatisicalResult.TabIndex = 61;
-            this.labelStatisicalResult.Text = " Please wait...";
+            this.labelStatisicalResult.Text = "Number of posts";
             this.labelStatisicalResult.Visible = false;
             // 
             // comboBoxStatistical
             // 
+            this.comboBoxStatistical.Enabled = false;
             this.comboBoxStatistical.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxStatistical.FormattingEnabled = true;
             this.comboBoxStatistical.Items.AddRange(new object[] {
             "This Month",
             "Last 3 Months",
-            "This Year",
+            "Last 12 Months",
             "Last Five Years",
             "Last Ten Years"});
-            this.comboBoxStatistical.Location = new System.Drawing.Point(90, 113);
+            this.comboBoxStatistical.Location = new System.Drawing.Point(126, 113);
             this.comboBoxStatistical.Name = "comboBoxStatistical";
             this.comboBoxStatistical.Size = new System.Drawing.Size(158, 26);
             this.comboBoxStatistical.TabIndex = 62;
@@ -458,7 +459,7 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Label labelBirthday;
         private System.Windows.Forms.Button buttonStatistical;
-        private System.Windows.Forms.Label labelStatistical;
+        private System.Windows.Forms.Label labelPostsData;
         private System.Windows.Forms.Label labelBirthdayCountdown;
         private System.Windows.Forms.Button buttonBirthday;
         private System.Windows.Forms.Label labelStatisicalResult;
