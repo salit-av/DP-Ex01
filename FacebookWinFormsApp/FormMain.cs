@@ -13,12 +13,14 @@ namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
+        private FacebookAuthManager m_FacebookAuthManager = new FacebookAuthManager();
         private RandomSelector m_RandomSelector;
         private PostAnalyzer m_PostAnalyzer;
         private Post m_PostToGuess;
         private User m_FriendToGuess;
         private bool m_IsUserGuessedPostYear = false;
         private bool m_IsUserGuessedFriendBirthday = false;
+        private User m_User;
 
         public FormMain()
         {
@@ -26,48 +28,20 @@ namespace BasicFacebookFeatures
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
         }
 
-        FacebookWrapper.LoginResult m_LoginResult;
-        User m_User;
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText("design.patterns");
-
-            if (m_LoginResult == null)
+            if (m_FacebookAuthManager.LoggedInUser == null)
             {
-                login();
-            }
-        }
-
-        private void login()
-        {
-            m_LoginResult = FacebookService.Login(
-                /// App ID
-                "749307766594184",
-                /// requested permissions:
-                "email",
-                "public_profile",
-                "user_posts",
-                "user_birthday"
-                );
-
-            if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
-            {
-                if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
+                if (m_FacebookAuthManager.Login("749307766594184", "email", "public_profile", "user_posts", "user_birthday"))
                 {
-                    m_User = m_LoginResult.LoggedInUser;
-                    m_RandomSelector = new RandomSelector(m_User);
-                    m_PostAnalyzer = new PostAnalyzer(m_User);
-                    buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+                    m_User = m_FacebookAuthManager.LoggedInUser;
+                    m_RandomSelector = new RandomSelector(m_FacebookAuthManager.LoggedInUser);
+                    m_PostAnalyzer = new PostAnalyzer(m_FacebookAuthManager.LoggedInUser);
+                    buttonLogin.Text = $"Logged in as {m_FacebookAuthManager.LoggedInUser.Name}";
                     buttonLogin.BackColor = Color.LightGreen;
                     enableButtonsAfterLogin();
                 }
-                else
-                {
-                    m_LoginResult = null;
-                }
             }
-
         }
 
         private void enableButtonsAfterLogin()
@@ -76,14 +50,19 @@ namespace BasicFacebookFeatures
             buttonLogin.Enabled = false;
             buttonLogout.Enabled = true;
             buttonBirthdayCountdown.Enabled = true;
+
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            FacebookService.LogoutWithUI();
+            m_FacebookAuthManager.Logout();
             buttonLogin.Text = "Login";
             buttonLogin.BackColor = buttonLogout.BackColor;
-            m_LoginResult = null;
+            disableButtonsAfterLogout();
+        }
+
+        private void disableButtonsAfterLogout()
+        {
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             buttonNumberOfPostInPeriodOfTime.Enabled = false;
@@ -230,8 +209,3 @@ namespace BasicFacebookFeatures
         }
     }
 }
-
-
-
-
-
