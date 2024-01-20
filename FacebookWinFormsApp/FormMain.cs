@@ -13,7 +13,6 @@ namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
-        private const int k_MaxPostLength = 250;
         private RandomSelector m_RandomSelector;
         private Post m_PostToGuess;
         private User m_FriendToGuess;
