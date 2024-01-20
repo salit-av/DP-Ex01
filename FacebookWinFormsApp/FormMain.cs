@@ -253,7 +253,7 @@ namespace BasicFacebookFeatures
 
             if (selectedMonthNumber == m_PostToGuess.CreatedTime.Value.Month)
             {
-                labelFriendName.Text = "YOUR GUESS IS CORRECT!!!";
+                labelFriendName.Text = "YOUR GUESS IS CORRECT!!!";          
                 labelFriendName.ForeColor = Color.PaleGreen;
             }
             else
