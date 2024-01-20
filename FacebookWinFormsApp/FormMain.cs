@@ -152,30 +152,36 @@ namespace BasicFacebookFeatures
 
         private bool isPostInSelectedPeriod(DateTime postDate, string selectedPeriod, DateTime now)
         {
+            bool isPostInPeriod = false;
+
             switch (selectedPeriod)
             {
                 case "This Month":
-                    return postDate.Year == now.Year && postDate.Month == now.Month;
+                    isPostInPeriod = postDate.Year == now.Year && postDate.Month == now.Month;
+                    break;
 
                 case "Last 3 Months":
                     DateTime threeMonthsAgo = now.AddMonths(-3);
-                    return postDate > threeMonthsAgo && postDate <= now;
+                    isPostInPeriod = postDate > threeMonthsAgo && postDate <= now;
+                    break;
 
                 case "Last 12 Months":
                     DateTime twelveMonthsAgo = now.AddMonths(-12);
-                    return postDate > twelveMonthsAgo && postDate <= now;
+                    isPostInPeriod = postDate > twelveMonthsAgo && postDate <= now;
+                    break;
 
                 case "Last Five Years":
                     DateTime fiveYearsAgo = now.AddYears(-5);
-                    return postDate > fiveYearsAgo && postDate <= now;
+                    isPostInPeriod = postDate > fiveYearsAgo && postDate <= now;
+                    break;
 
                 case "Last Ten Years":
                     DateTime tenYearsAgo = now.AddYears(-10);
-                    return postDate > tenYearsAgo && postDate <= now;
-
-                default:
-                    return false;
+                    isPostInPeriod = postDate > tenYearsAgo && postDate <= now;
+                    break;
             }
+
+            return isPostInPeriod;
         }
 
         private void showGuessPostYear()
