@@ -233,10 +233,6 @@ namespace BasicFacebookFeatures
                     labelSelectedPost.ForeColor = Color.Red;
                 }
             }
-            else
-            {
-                labelSelectedPost.Text = "No posts exists!";
-            }
         }
 
         private void buttonNewPostGuess_Click(object sender, EventArgs e)
@@ -255,17 +251,21 @@ namespace BasicFacebookFeatures
 
         private void buttonGuessBirthdayMonth_Click(object sender, EventArgs e)
         {
-            int selectedMonthNumber = MonthConverter.GetMonthNumber(comboBoxGuessBirthdayMonth.SelectedItem.ToString());
+            if (m_FriendToGuess != null)
+            {
+                int selectedMonthNumber = MonthConverter.GetMonthNumber(comboBoxGuessBirthdayMonth.SelectedItem.ToString());
+                Birthday friendBirthday = new Birthday(m_FriendToGuess.Birthday);
 
-            if (selectedMonthNumber == m_PostToGuess.CreatedTime.Value.Month)
-            {
-                labelFriendName.Text = "YOUR GUESS IS CORRECT!!!";          
-                labelFriendName.ForeColor = Color.PaleGreen;
-            }
-            else
-            {
-                labelFriendName.Text = "your guess is wrong";
-                labelFriendName.ForeColor = Color.Red;
+                if (selectedMonthNumber == friendBirthday.getBirthdayMonth())
+                {
+                    labelFriendName.Text = "YOUR GUESS IS CORRECT!!!";
+                    labelFriendName.ForeColor = Color.PaleGreen;
+                }
+                else
+                {
+                    labelFriendName.Text = "your guess is wrong";
+                    labelFriendName.ForeColor = Color.Red;
+                }
             }
         }
     }

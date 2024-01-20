@@ -28,5 +28,10 @@ namespace BasicFacebookFeatures
 
             return nextBirthday - DateTime.Now;
         }
+
+        internal int getBirthdayMonth()
+        {
+            return r_Month;
+        }
     }
 }
