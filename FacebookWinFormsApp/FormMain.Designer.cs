@@ -183,6 +183,7 @@ namespace BasicFacebookFeatures
             // 
             // comboBoxGuessBirthdayMonth
             // 
+            this.comboBoxGuessBirthdayMonth.Enabled = false;
             this.comboBoxGuessBirthdayMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGuessBirthdayMonth.FormattingEnabled = true;
             this.comboBoxGuessBirthdayMonth.Items.AddRange(new object[] {
@@ -249,7 +250,6 @@ namespace BasicFacebookFeatures
             this.labelBirthdayCountdown.Text = "Time until next birthday: 000 days, 00 hours, 00 minutes.";
             this.labelBirthdayCountdown.Visible = false;
             // 
-
             // buttonBirthdayCountdown
             // 
             this.buttonBirthdayCountdown.Enabled = false;

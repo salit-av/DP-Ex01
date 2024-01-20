@@ -14,6 +14,7 @@ namespace BasicFacebookFeatures
     public partial class FormMain : Form
     {
         private RandomSelector m_RandomSelector;
+        private PostAnalyzer m_PostAnalyzer;
         private Post m_PostToGuess;
         private User m_FriendToGuess;
         private bool m_IsUserGuessedPostYear = false;
@@ -56,6 +57,7 @@ namespace BasicFacebookFeatures
                 {
                     m_User = m_LoginResult.LoggedInUser;
                     m_RandomSelector = new RandomSelector(m_User);
+                    m_PostAnalyzer = new PostAnalyzer(m_User);
                     buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
                     buttonLogin.BackColor = Color.LightGreen;
                     enableButtonsAfterLogin();
@@ -124,11 +126,13 @@ namespace BasicFacebookFeatures
 
         private void buttonNumberOfPostInPeriodOfTime_Click(object sender, EventArgs e)
         {
+            string selectedPeriodOption = comboBoxNumberOfPostPeriodsOfTime.SelectedItem.ToString();
+
             labelPleaseWait.Visible = true;
             labelPleaseWait.Text = "Please wait...";
 
             labelNumberOfPostsInPeriodOfTime.Visible = true;
-            labelNumberOfPostsInPeriodOfTime.Text = $"{getNumberOfPostInRequestedTimePeriod()} posts found";
+            labelNumberOfPostsInPeriodOfTime.Text = $"{m_PostAnalyzer.CountPostsInPeriod(selectedPeriodOption)} posts found";
 
             labelPleaseWait.Visible = false;
 
@@ -139,58 +143,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private int getNumberOfPostInRequestedTimePeriod()
-        {
-            int counter = 0;
-            string selectedPeriodOption = comboBoxNumberOfPostPeriodsOfTime.SelectedItem.ToString();
-            DateTime now = DateTime.Now;
-
-            foreach (Post post in m_User.Posts)
-            {
-                DateTime postDate = post.CreatedTime.Value;
-
-                if (isPostInSelectedPeriod(postDate, selectedPeriodOption, now))
-                {
-                    counter++;
-                }
-            }
-
-            return counter;
-        }
-
-        private bool isPostInSelectedPeriod(DateTime postDate, string selectedPeriod, DateTime now)
-        {
-            bool isPostInPeriod = false;
-
-            switch (selectedPeriod)
-            {
-                case "This Month":
-                    isPostInPeriod = postDate.Year == now.Year && postDate.Month == now.Month;
-                    break;
-
-                case "Last 3 Months":
-                    DateTime threeMonthsAgo = now.AddMonths(-3);
-                    isPostInPeriod = postDate > threeMonthsAgo && postDate <= now;
-                    break;
-
-                case "Last 12 Months":
-                    DateTime twelveMonthsAgo = now.AddMonths(-12);
-                    isPostInPeriod = postDate > twelveMonthsAgo && postDate <= now;
-                    break;
-
-                case "Last Five Years":
-                    DateTime fiveYearsAgo = now.AddYears(-5);
-                    isPostInPeriod = postDate > fiveYearsAgo && postDate <= now;
-                    break;
-
-                case "Last Ten Years":
-                    DateTime tenYearsAgo = now.AddYears(-10);
-                    isPostInPeriod = postDate > tenYearsAgo && postDate <= now;
-                    break;
-            }
-
-            return isPostInPeriod;
-        }
 
         private void showGuessPostYear()
         {
@@ -246,6 +198,7 @@ namespace BasicFacebookFeatures
         private void buttonNewPostGuess_Click(object sender, EventArgs e)
         {
             m_PostToGuess = m_RandomSelector.GetRandomPost();
+            comboBoxGuessPostYear.Text = "Select Year";
             labelSelectedPost.ForeColor = Color.Black;
             labelSelectedPost.Text = (m_PostToGuess == null) ? "No posts exists!" : m_PostToGuess.Message;
         }
