@@ -219,16 +219,23 @@ namespace BasicFacebookFeatures
 
         private void buttonGuessYear_Click(object sender, EventArgs e)
         {
-            string selectedYearOption = comboBoxGuessPostYear.SelectedItem.ToString();
-            if(selectedYearOption == m_PostToGuess.CreatedTime.Value.Year.ToString())
+            if (m_PostToGuess != null)
             {
-                labelSelectedPost.Text = "YOUR GUESS IS CORRECT!!!";
-                labelSelectedPost.ForeColor = Color.PaleGreen;
+                string selectedYearOption = comboBoxGuessPostYear.SelectedItem.ToString();
+                if (selectedYearOption == m_PostToGuess.CreatedTime.Value.Year.ToString())
+                {
+                    labelSelectedPost.Text = "YOUR GUESS IS CORRECT!!!";
+                    labelSelectedPost.ForeColor = Color.PaleGreen;
+                }
+                else
+                {
+                    labelSelectedPost.Text = "your guess is wrong";
+                    labelSelectedPost.ForeColor = Color.Red;
+                }
             }
             else
             {
-                labelSelectedPost.Text = "your guess is wrong";
-                labelSelectedPost.ForeColor = Color.Red;
+                labelSelectedPost.Text = "No posts exists!";
             }
         }
 
