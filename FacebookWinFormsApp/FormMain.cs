@@ -66,7 +66,7 @@ namespace BasicFacebookFeatures
             comboBoxNumberOfPostPeriodsOfTime.Enabled = true;
             buttonLogin.Enabled = false;
             buttonLogout.Enabled = true;
-            buttonBirthday.Enabled = true;
+            buttonBirthdayCountdown.Enabled = true;
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace BasicFacebookFeatures
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             buttonNumberOfPostInPeriodOfTime.Enabled = false;
-            buttonBirthday.Enabled = false;
+            buttonBirthdayCountdown.Enabled = false;
         }
 
         private void buttonBirthdayCounter_Click(object sender, EventArgs e)
