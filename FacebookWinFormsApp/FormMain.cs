@@ -83,7 +83,7 @@ namespace BasicFacebookFeatures
 
         private void buttonBirthdayCounter_Click(object sender, EventArgs e)
         {
-            Birthday birthday = new Birthday(m_User.Birthday);
+            BirthdayFeature birthday = new BirthdayFeature(m_User.Birthday);
             TimeSpan timeSpan = birthday.TimeToBirhtday();
 
             labelBirthdayCountdown.Visible = true;

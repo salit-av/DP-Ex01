@@ -89,7 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Birthday.cs" />
+    <Compile Include="BirthdayFeature.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
