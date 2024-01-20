@@ -254,7 +254,6 @@ namespace BasicFacebookFeatures
         private void buttonNewBirthdayGuess_Click(object sender, EventArgs e)
         {
             m_FriendToGuess = m_RandomSelector.GetRandomFriend();
-            labelFriendName.ForeColor = Color.Black;
             labelFriendName.Text = (m_FriendToGuess == null) ? "No friends exists!" : m_FriendToGuess.Name;
         }
 

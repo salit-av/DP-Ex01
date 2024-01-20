@@ -241,11 +241,12 @@ namespace BasicFacebookFeatures
             // labelBirthdayCountdown
             // 
             this.labelBirthdayCountdown.AutoSize = true;
-            this.labelBirthdayCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBirthdayCountdown.Location = new System.Drawing.Point(48, 205);
+            this.labelBirthdayCountdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBirthdayCountdown.Location = new System.Drawing.Point(65, 186);
             this.labelBirthdayCountdown.Name = "labelBirthdayCountdown";
-            this.labelBirthdayCountdown.Size = new System.Drawing.Size(0, 29);
+            this.labelBirthdayCountdown.Size = new System.Drawing.Size(477, 24);
             this.labelBirthdayCountdown.TabIndex = 59;
+            this.labelBirthdayCountdown.Text = "Time until next birthday: 000 days, 00 hours, 00 minutes.";
             this.labelBirthdayCountdown.Visible = false;
             // 
             // buttonBirthdayCountdown
