@@ -43,5 +43,10 @@ namespace BasicFacebookFeatures
                 }
             }
         }
+
+        internal int GetBirthdayMonth()
+        {
+            return r_Month;
+        }
     }
 }

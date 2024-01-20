@@ -53,12 +53,20 @@ namespace BasicFacebookFeatures
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
-                m_User = m_LoginResult.LoggedInUser;
-                m_RandomSelector = new RandomSelector(m_User);
-                buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-                buttonLogin.BackColor = Color.LightGreen;
-                enableButtonsAfterLogin();
+                if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
+                {
+                    m_User = m_LoginResult.LoggedInUser;
+                    m_RandomSelector = new RandomSelector(m_User);
+                    buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+                    buttonLogin.BackColor = Color.LightGreen;
+                    enableButtonsAfterLogin();
+                }
+                else
+                {
+                    m_LoginResult = null;
+                }
             }
+
         }
 
         private void enableButtonsAfterLogin()
@@ -66,7 +74,7 @@ namespace BasicFacebookFeatures
             comboBoxNumberOfPostPeriodsOfTime.Enabled = true;
             buttonLogin.Enabled = false;
             buttonLogout.Enabled = true;
-            buttonBirthday.Enabled = true;
+            buttonBirthdayCountdown.Enabled = true;
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -78,7 +86,8 @@ namespace BasicFacebookFeatures
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             buttonNumberOfPostInPeriodOfTime.Enabled = false;
-            buttonBirthday.Enabled = false;
+            buttonBirthdayCountdown.Enabled = false;
+            comboBoxNumberOfPostPeriodsOfTime.Enabled = false;
         }
 
         private void buttonBirthdayCounter_Click(object sender, EventArgs e)
@@ -88,7 +97,7 @@ namespace BasicFacebookFeatures
 
             labelBirthdayCountdown.Visible = true;
             labelBirthdayCountdown.Text = $"Time until next birthday: {timeSpan.Days} days, {timeSpan.Hours} hours, {timeSpan.Minutes} minutes.";
-            
+
             if (!m_IsUserGuessedFriendBirthday)
             {
                 showGuessBirthdayMonth();
@@ -152,30 +161,36 @@ namespace BasicFacebookFeatures
 
         private bool isPostInSelectedPeriod(DateTime postDate, string selectedPeriod, DateTime now)
         {
+            bool isPostInPeriod = false;
+
             switch (selectedPeriod)
             {
                 case "This Month":
-                    return postDate.Year == now.Year && postDate.Month == now.Month;
+                    isPostInPeriod = postDate.Year == now.Year && postDate.Month == now.Month;
+                    break;
 
                 case "Last 3 Months":
                     DateTime threeMonthsAgo = now.AddMonths(-3);
-                    return postDate > threeMonthsAgo && postDate <= now;
+                    isPostInPeriod = postDate > threeMonthsAgo && postDate <= now;
+                    break;
 
                 case "Last 12 Months":
                     DateTime twelveMonthsAgo = now.AddMonths(-12);
-                    return postDate > twelveMonthsAgo && postDate <= now;
+                    isPostInPeriod = postDate > twelveMonthsAgo && postDate <= now;
+                    break;
 
                 case "Last Five Years":
                     DateTime fiveYearsAgo = now.AddYears(-5);
-                    return postDate > fiveYearsAgo && postDate <= now;
+                    isPostInPeriod = postDate > fiveYearsAgo && postDate <= now;
+                    break;
 
                 case "Last Ten Years":
                     DateTime tenYearsAgo = now.AddYears(-10);
-                    return postDate > tenYearsAgo && postDate <= now;
-
-                default:
-                    return false;
+                    isPostInPeriod = postDate > tenYearsAgo && postDate <= now;
+                    break;
             }
+
+            return isPostInPeriod;
         }
 
         private void showGuessPostYear()
@@ -196,39 +211,42 @@ namespace BasicFacebookFeatures
             labelSelectedPost.Visible = true;
         }
 
-
         private void comboBoxStatistical_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxNumberOfPostPeriodsOfTime.SelectedIndex != -1)
-            {
-                buttonNumberOfPostInPeriodOfTime.Enabled = true;
-            }
-            else
-            {
-                buttonNumberOfPostInPeriodOfTime.Enabled = false;
-            }
+            buttonNumberOfPostInPeriodOfTime.Enabled = comboBoxNumberOfPostPeriodsOfTime.SelectedIndex != -1;
+        }
+
+        private void comboBoxGuessBirthdayMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonGuessBirthdayMonth.Enabled = comboBoxGuessBirthdayMonth.SelectedIndex != -1;
+        }
+
+        private void comboBoxGuessPostYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonGuessYear.Enabled = comboBoxGuessPostYear.SelectedIndex != -1;
         }
 
         private void buttonGuessYear_Click(object sender, EventArgs e)
         {
-            string selectedYearOption = comboBoxGuessPostYear.SelectedItem.ToString();
-            if(selectedYearOption == m_PostToGuess.CreatedTime.Value.Year.ToString())
+            if (m_PostToGuess != null)
             {
-                labelSelectedPost.Text = "YOUR GUESS IS CORRECT!!!";
-                labelSelectedPost.ForeColor = Color.PaleGreen;
-            }
-            else
-            {
-                labelSelectedPost.Text = "your guess is wrong";
-                labelSelectedPost.ForeColor = Color.Red;
+                string selectedYearOption = comboBoxGuessPostYear.SelectedItem.ToString();
+                if (selectedYearOption == m_PostToGuess.CreatedTime.Value.Year.ToString())
+                {
+                    labelSelectedPost.Text = "YOUR GUESS IS CORRECT!!!";
+                    labelSelectedPost.ForeColor = Color.PaleGreen;
+                }
+                else
+                {
+                    labelSelectedPost.Text = "your guess is wrong";
+                    labelSelectedPost.ForeColor = Color.Red;
+                }
             }
         }
 
         private void buttonNewPostGuess_Click(object sender, EventArgs e)
         {
             m_PostToGuess = m_RandomSelector.GetRandomPost();
-            
-            comboBoxGuessPostYear.Text = "Select Year";
             labelSelectedPost.ForeColor = Color.Black;
             labelSelectedPost.Text = (m_PostToGuess == null) ? "No posts exists!" : m_PostToGuess.Message;
         }
@@ -236,24 +254,26 @@ namespace BasicFacebookFeatures
         private void buttonNewBirthdayGuess_Click(object sender, EventArgs e)
         {
             m_FriendToGuess = m_RandomSelector.GetRandomFriend();
-            comboBoxGuessBirthdayMonth.Text = "Select Month";
-            labelFriendName.ForeColor = Color.Black;
             labelFriendName.Text = (m_FriendToGuess == null) ? "No friends exists!" : m_FriendToGuess.Name;
         }
 
         private void buttonGuessBirthdayMonth_Click(object sender, EventArgs e)
         {
-            int selectedMonthNumber = MonthConverter.GetMonthNumber(comboBoxGuessBirthdayMonth.SelectedItem.ToString());
+            if (m_FriendToGuess != null)
+            {
+                int selectedMonthNumber = MonthConverter.GetMonthNumber(comboBoxGuessBirthdayMonth.SelectedItem.ToString());
+                BirthdayFeature friendBirthday = new BirthdayFeature(m_FriendToGuess.Birthday);
 
-            if (selectedMonthNumber == m_PostToGuess.CreatedTime.Value.Month)
-            {
-                labelFriendName.Text = "YOUR GUESS IS CORRECT!!!";
-                labelFriendName.ForeColor = Color.PaleGreen;
-            }
-            else
-            {
-                labelFriendName.Text = "your guess is wrong";
-                labelFriendName.ForeColor = Color.Red;
+                if (selectedMonthNumber == friendBirthday.GetBirthdayMonth())
+                {
+                    labelFriendName.Text = "YOUR GUESS IS CORRECT!!!";
+                    labelFriendName.ForeColor = Color.PaleGreen;
+                }
+                else
+                {
+                    labelFriendName.Text = "your guess is wrong";
+                    labelFriendName.ForeColor = Color.Red;
+                }
             }
         }
     }
