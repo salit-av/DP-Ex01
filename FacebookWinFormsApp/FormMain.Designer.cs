@@ -183,7 +183,6 @@ namespace BasicFacebookFeatures
             // 
             // comboBoxGuessBirthdayMonth
             // 
-            this.comboBoxGuessBirthdayMonth.Enabled = false;
             this.comboBoxGuessBirthdayMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGuessBirthdayMonth.FormattingEnabled = true;
             this.comboBoxGuessBirthdayMonth.Items.AddRange(new object[] {
@@ -205,6 +204,7 @@ namespace BasicFacebookFeatures
             this.comboBoxGuessBirthdayMonth.TabIndex = 69;
             this.comboBoxGuessBirthdayMonth.Text = "Select Month";
             this.comboBoxGuessBirthdayMonth.Visible = false;
+            this.comboBoxGuessBirthdayMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxGuessBirthdayMonth_SelectedIndexChanged);
             // 
             // labelGuessFriendBirthday
             // 
@@ -315,6 +315,7 @@ namespace BasicFacebookFeatures
             // 
             // buttonGuessYear
             // 
+            this.buttonGuessYear.Enabled = false;
             this.buttonGuessYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGuessYear.Location = new System.Drawing.Point(211, 478);
             this.buttonGuessYear.Name = "buttonGuessYear";
@@ -347,6 +348,7 @@ namespace BasicFacebookFeatures
             this.comboBoxGuessPostYear.TabIndex = 66;
             this.comboBoxGuessPostYear.Text = "Select Year";
             this.comboBoxGuessPostYear.Visible = false;
+            this.comboBoxGuessPostYear.SelectedIndexChanged += new System.EventHandler(this.comboBoxGuessPostYear_SelectedIndexChanged);
             // 
             // labelGuessPost
             // 
