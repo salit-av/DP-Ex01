@@ -53,12 +53,20 @@ namespace BasicFacebookFeatures
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
-                m_User = m_LoginResult.LoggedInUser;
-                m_RandomSelector = new RandomSelector(m_User);
-                buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-                buttonLogin.BackColor = Color.LightGreen;
-                enableButtonsAfterLogin();
+                if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
+                {
+                    m_User = m_LoginResult.LoggedInUser;
+                    m_RandomSelector = new RandomSelector(m_User);
+                    buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+                    buttonLogin.BackColor = Color.LightGreen;
+                    enableButtonsAfterLogin();
+                }
+                else
+                {
+                    m_LoginResult = null;
+                }
             }
+          
         }
 
         private void enableButtonsAfterLogin()
@@ -79,6 +87,7 @@ namespace BasicFacebookFeatures
             buttonLogout.Enabled = false;
             buttonNumberOfPostInPeriodOfTime.Enabled = false;
             buttonBirthdayCountdown.Enabled = false;
+            comboBoxNumberOfPostPeriodsOfTime.Enabled = false;
         }
 
         private void buttonBirthdayCounter_Click(object sender, EventArgs e)
