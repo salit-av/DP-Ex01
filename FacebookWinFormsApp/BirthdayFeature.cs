@@ -20,30 +20,25 @@ namespace BasicFacebookFeatures
             }
         }
 
-        internal TimeSpan TimeToBirhtday()
+        internal TimeSpan TimeToBirhtday() 
         {
-            try
+            DateTime nextBirthday;
+
+            if (r_Month == 2 && r_Day == 29) 
             {
-                DateTime nextBirthday = new DateTime(DateTime.Now.Year, r_Month, r_Day);
-                if (nextBirthday < DateTime.Now)
+                nextBirthday = new DateTime(DateTime.Now.Year, r_Month, 28).AddYears(1);
+            } 
+            else
+            {
+                nextBirthday = new DateTime(DateTime.Now.Year, r_Month, r_Day);
+
+                if (nextBirthday < DateTime.Now) 
                 {
                     nextBirthday = nextBirthday.AddYears(1);
                 }
+            }
 
-                return nextBirthday - DateTime.Now;
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                if (r_Month == 2 && r_Day == 29)
-                {
-                    DateTime nextBirthday = new DateTime(DateTime.Now.Year, r_Month, 28).AddYears(1);
-                    return nextBirthday - DateTime.Now;
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            return nextBirthday - DateTime.Now;
         }
 
         internal int GetBirthdayMonth()

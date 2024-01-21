@@ -32,7 +32,7 @@ namespace BasicFacebookFeatures
         {
             if (m_FacebookAuthManager.m_LoggedInUser == null)
             {
-                if (m_FacebookAuthManager.Login("749307766594184", "email", "public_profile", "user_posts", "user_birthday"))
+                if (m_FacebookAuthManager.Login("749307766594184", "email", "public_profile", "user_posts", "user_birthday", "user_friends"))
                 {
                     m_User = m_FacebookAuthManager.m_LoggedInUser;
                     m_RandomSelector = new RandomSelector(m_User);

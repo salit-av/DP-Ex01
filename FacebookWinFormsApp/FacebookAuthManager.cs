@@ -10,19 +10,16 @@ namespace BasicFacebookFeatures
 
         internal bool Login(string appId, params string[] permissions)
         {
+            bool isLoginSucceeded = false;
             m_LoginResult = FacebookService.Login(appId, permissions);
-
-            if (!string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
-            {
-                return false;
-            }
-            else if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
+            
+            if (!string.IsNullOrEmpty(m_LoginResult.AccessToken))
             {
                 m_LoggedInUser = m_LoginResult.LoggedInUser;
-                return true;
+                isLoginSucceeded = true;
             }
 
-            return false;
+            return isLoginSucceeded;
         }
 
         internal void Logout()
@@ -31,5 +28,4 @@ namespace BasicFacebookFeatures
             m_LoggedInUser = null;
         }
     }
-
 }
