@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace BasicFacebookFeatures
 {
     partial class FormMain
@@ -30,7 +29,7 @@ namespace BasicFacebookFeatures
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage = new System.Windows.Forms.TabPage();
             this.labelWinFormTitle = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
@@ -57,27 +56,27 @@ namespace BasicFacebookFeatures
             this.buttonNumberOfPostInPeriodOfTime = new System.Windows.Forms.Button();
             this.labelNumberOfPostsInPeriodOfTime = new System.Windows.Forms.Label();
             this.comboBoxNumberOfPostPeriodsOfTime = new System.Windows.Forms.ComboBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1.SuspendLayout();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage.SuspendLayout();
             this.panelBirthday.SuspendLayout();
             this.panelPostsData.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabPage1
+            // tabPage
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.LightCyan;
-            this.tabPage1.Controls.Add(this.labelWinFormTitle);
-            this.tabPage1.Controls.Add(this.buttonLogout);
-            this.tabPage1.Controls.Add(this.buttonLogin);
-            this.tabPage1.Controls.Add(this.panelBirthday);
-            this.tabPage1.Controls.Add(this.panelPostsData);
-            this.tabPage1.Location = new System.Drawing.Point(4, 27);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1235, 666);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "FacebookWinFormsApp";
+            this.tabPage.BackColor = System.Drawing.Color.LightCyan;
+            this.tabPage.Controls.Add(this.labelWinFormTitle);
+            this.tabPage.Controls.Add(this.buttonLogout);
+            this.tabPage.Controls.Add(this.buttonLogin);
+            this.tabPage.Controls.Add(this.panelBirthday);
+            this.tabPage.Controls.Add(this.panelPostsData);
+            this.tabPage.Location = new System.Drawing.Point(4, 27);
+            this.tabPage.Name = "tabPage";
+            this.tabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage.Size = new System.Drawing.Size(1235, 666);
+            this.tabPage.TabIndex = 0;
+            this.tabPage.Text = "FacebookWinFormsApp";
             // 
             // labelWinFormTitle
             // 
@@ -424,43 +423,43 @@ namespace BasicFacebookFeatures
             this.comboBoxNumberOfPostPeriodsOfTime.Text = "Select Period";
             this.comboBoxNumberOfPostPeriodsOfTime.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatistical_SelectedIndexChanged);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1243, 697);
-            this.tabControl1.TabIndex = 54;
+            this.tabControl.Controls.Add(this.tabPage);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1243, 697);
+            this.tabControl.TabIndex = 54;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 697);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FacebookWinFormsApp";
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabPage.ResumeLayout(false);
+            this.tabPage.PerformLayout();
             this.panelBirthday.ResumeLayout(false);
             this.panelBirthday.PerformLayout();
             this.panelPostsData.ResumeLayout(false);
             this.panelPostsData.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
         #endregion
 
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Button buttonLogin;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.Label labelBirthdayTitle;
         private System.Windows.Forms.Button buttonNumberOfPostInPeriodOfTime;
         private System.Windows.Forms.Label labelPostsDataTitle;

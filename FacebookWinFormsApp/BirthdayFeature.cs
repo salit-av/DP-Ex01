@@ -6,6 +6,7 @@ namespace BasicFacebookFeatures
     {
         private readonly int r_Day;
         private readonly int r_Month;
+        private readonly int r_Year;
 
         internal BirthdayFeature(string i_Birthday)
         {
@@ -15,6 +16,7 @@ namespace BasicFacebookFeatures
             {
                 r_Month = int.Parse(birthdayDivide[0]);
                 r_Day = int.Parse(birthdayDivide[1]);
+                r_Year = int.Parse(birthdayDivide[2]);
             }
         }
 
