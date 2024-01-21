@@ -3,16 +3,16 @@ using System;
 
 namespace BasicFacebookFeatures
 {
-    public class PostAnalyzer
+    internal class PostAnalyzer
     {
         private User m_User;
 
-        public PostAnalyzer(User i_User)
+        internal PostAnalyzer(User i_User)
         {
             this.m_User = i_User;
         }
 
-        public int CountPostsInPeriod(string i_periodOfTime)
+        internal int CountPostsInPeriod(string i_periodOfTime)
         {
             int counter = 0;
             DateTime now = DateTime.Now;

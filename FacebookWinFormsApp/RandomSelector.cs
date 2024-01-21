@@ -3,17 +3,17 @@ using System;
 
 namespace BasicFacebookFeatures
 {
-    public class RandomSelector
+    internal class RandomSelector
     {
         private User m_User;
         private Random m_Random = new Random();
 
-        public RandomSelector(User i_user)
+        internal RandomSelector(User i_user)
         {
             this.m_User = i_user;
         }
 
-        public Post GetRandomPost()
+        internal Post GetRandomPost()
         {
             string postText;
             int randomIndex;
@@ -33,7 +33,7 @@ namespace BasicFacebookFeatures
             return post;
         }
 
-        public User GetRandomFriend()
+        internal User GetRandomFriend()
         {
             int randomIndex;
             User user = null;

@@ -11,18 +11,18 @@ using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
-    public partial class FormMain : Form
+    internal partial class FormMain : Form
     {
         private FacebookAuthManager m_FacebookAuthManager = new FacebookAuthManager();
+        private User m_User;
         private RandomSelector m_RandomSelector;
         private PostAnalyzer m_PostAnalyzer;
         private Post m_PostToGuess;
         private User m_FriendToGuess;
         private bool m_IsUserGuessedPostYear = false;
         private bool m_IsUserGuessedFriendBirthday = false;
-        private User m_User;
 
-        public FormMain()
+        internal FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
@@ -30,14 +30,14 @@ namespace BasicFacebookFeatures
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (m_FacebookAuthManager.LoggedInUser == null)
+            if (m_FacebookAuthManager.m_LoggedInUser == null)
             {
                 if (m_FacebookAuthManager.Login("749307766594184", "email", "public_profile", "user_posts", "user_birthday"))
                 {
-                    m_User = m_FacebookAuthManager.LoggedInUser;
-                    m_RandomSelector = new RandomSelector(m_FacebookAuthManager.LoggedInUser);
-                    m_PostAnalyzer = new PostAnalyzer(m_FacebookAuthManager.LoggedInUser);
-                    buttonLogin.Text = $"Logged in as {m_FacebookAuthManager.LoggedInUser.Name}";
+                    m_User = m_FacebookAuthManager.m_LoggedInUser;
+                    m_RandomSelector = new RandomSelector(m_User);
+                    m_PostAnalyzer = new PostAnalyzer(m_User);
+                    buttonLogin.Text = $"Logged in as {m_User.Name}";
                     buttonLogin.BackColor = Color.LightGreen;
                     enableButtonsAfterLogin();
                 }
@@ -50,7 +50,6 @@ namespace BasicFacebookFeatures
             buttonLogin.Enabled = false;
             buttonLogout.Enabled = true;
             buttonBirthdayCountdown.Enabled = true;
-
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -65,8 +64,8 @@ namespace BasicFacebookFeatures
         {
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
-            buttonNumberOfPostInPeriodOfTime.Enabled = false;
             buttonBirthdayCountdown.Enabled = false;
+            buttonNumberOfPostInPeriodOfTime.Enabled = false;
             comboBoxNumberOfPostPeriodsOfTime.Enabled = false;
         }
 
@@ -177,7 +176,6 @@ namespace BasicFacebookFeatures
         private void buttonNewPostGuess_Click(object sender, EventArgs e)
         {
             m_PostToGuess = m_RandomSelector.GetRandomPost();
-            comboBoxGuessPostYear.Text = "Select Year";
             labelSelectedPost.ForeColor = Color.Black;
             labelSelectedPost.Text = (m_PostToGuess == null) ? "No posts exists!" : m_PostToGuess.Message;
         }
@@ -190,9 +188,11 @@ namespace BasicFacebookFeatures
 
         private void buttonGuessBirthdayMonth_Click(object sender, EventArgs e)
         {
+            MonthConverter monthConvertor = new MonthConverter();
+
             if (m_FriendToGuess != null)
             {
-                int selectedMonthNumber = MonthConverter.GetMonthNumber(comboBoxGuessBirthdayMonth.SelectedItem.ToString());
+                int selectedMonthNumber = monthConvertor.GetMonthNumber(comboBoxGuessBirthdayMonth.SelectedItem.ToString());
                 BirthdayFeature friendBirthday = new BirthdayFeature(m_FriendToGuess.Birthday);
 
                 if (selectedMonthNumber == friendBirthday.GetBirthdayMonth())

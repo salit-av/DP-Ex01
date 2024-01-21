@@ -183,7 +183,7 @@ namespace BasicFacebookFeatures
             // 
             // comboBoxGuessBirthdayMonth
             // 
-            this.comboBoxGuessBirthdayMonth.Enabled = false;
+            this.comboBoxGuessBirthdayMonth.Enabled = true;
             this.comboBoxGuessBirthdayMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGuessBirthdayMonth.FormattingEnabled = true;
             this.comboBoxGuessBirthdayMonth.Items.AddRange(new object[] {
