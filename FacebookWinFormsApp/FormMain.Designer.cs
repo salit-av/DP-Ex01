@@ -158,11 +158,10 @@ namespace BasicFacebookFeatures
             // 
             // labelFriendName
             // 
-            this.labelFriendName.AutoSize = true;
             this.labelFriendName.ForeColor = System.Drawing.Color.LightGray;
-            this.labelFriendName.Location = new System.Drawing.Point(253, 379);
+            this.labelFriendName.Location = new System.Drawing.Point(138, 383);
             this.labelFriendName.Name = "labelFriendName";
-            this.labelFriendName.Size = new System.Drawing.Size(90, 18);
+            this.labelFriendName.Size = new System.Drawing.Size(324, 60);
             this.labelFriendName.TabIndex = 69;
             this.labelFriendName.Text = "Friend name";
             this.labelFriendName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -323,7 +322,6 @@ namespace BasicFacebookFeatures
             this.buttonGuessYear.Size = new System.Drawing.Size(138, 37);
             this.buttonGuessYear.TabIndex = 67;
             this.buttonGuessYear.Text = "Check Yourself";
-            this.buttonGuessYear.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.buttonGuessYear.UseVisualStyleBackColor = true;
             this.buttonGuessYear.Visible = false;
             this.buttonGuessYear.Click += new System.EventHandler(this.buttonGuessYear_Click);
