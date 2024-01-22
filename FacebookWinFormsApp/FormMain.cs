@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
     internal partial class FormMain : Form
     {
-        private FacebookAuthManager m_FacebookAuthManager = new FacebookAuthManager();
+        private FacebookAuthenticationManager m_FacebookAuthenticationManager = new FacebookAuthenticationManager();
         private User m_User;
         private RandomSelector m_RandomSelector;
         private PostAnalyzer m_PostAnalyzer;
@@ -30,11 +24,11 @@ namespace BasicFacebookFeatures
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (m_FacebookAuthManager.m_LoggedInUser == null)
+            if (m_FacebookAuthenticationManager.m_LoggedInUser == null)
             {
-                if (m_FacebookAuthManager.Login("749307766594184", "email", "public_profile", "user_posts", "user_birthday", "user_friends"))
+                if (m_FacebookAuthenticationManager.Login("749307766594184", "email", "public_profile", "user_posts", "user_birthday", "user_friends"))
                 {
-                    m_User = m_FacebookAuthManager.m_LoggedInUser;
+                    m_User = m_FacebookAuthenticationManager.m_LoggedInUser;
                     m_RandomSelector = new RandomSelector(m_User);
                     m_PostAnalyzer = new PostAnalyzer(m_User);
                     buttonLogin.Text = $"Logged in as {m_User.Name}";
@@ -54,7 +48,7 @@ namespace BasicFacebookFeatures
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            m_FacebookAuthManager.Logout();
+            m_FacebookAuthenticationManager.Logout();
             buttonLogin.Text = "Login";
             buttonLogin.BackColor = buttonLogout.BackColor;
             disableButtonsAfterLogout();
@@ -100,7 +94,6 @@ namespace BasicFacebookFeatures
             labelGuessFriendBirthday.Visible = true;
             labelFriendName.Visible = true;
         }
-
 
         private void buttonNumberOfPostInPeriodOfTime_Click(object sender, EventArgs e)
         {

@@ -81,13 +81,13 @@ namespace BasicFacebookFeatures
             // labelWinFormTitle
             // 
             this.labelWinFormTitle.AutoSize = true;
-            this.labelWinFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWinFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWinFormTitle.ForeColor = System.Drawing.Color.RoyalBlue;
             this.labelWinFormTitle.Location = new System.Drawing.Point(207, 27);
             this.labelWinFormTitle.Name = "labelWinFormTitle";
-            this.labelWinFormTitle.Size = new System.Drawing.Size(911, 54);
+            this.labelWinFormTitle.Size = new System.Drawing.Size(994, 46);
             this.labelWinFormTitle.TabIndex = 63;
-            this.labelWinFormTitle.Text = "WELCOME TO FACEBOOK STATISTIC!";
+            this.labelWinFormTitle.Text = "WELCOME TO FACEBOOK DATA AND GUESSES!";
             // 
             // buttonLogout
             // 
@@ -165,6 +165,7 @@ namespace BasicFacebookFeatures
             this.labelFriendName.Size = new System.Drawing.Size(90, 18);
             this.labelFriendName.TabIndex = 69;
             this.labelFriendName.Text = "Friend name";
+            this.labelFriendName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelFriendName.Visible = false;
             // 
             // buttonGuessBirthdayMonth
@@ -182,7 +183,6 @@ namespace BasicFacebookFeatures
             // 
             // comboBoxGuessBirthdayMonth
             // 
-            this.comboBoxGuessBirthdayMonth.Enabled = true;
             this.comboBoxGuessBirthdayMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGuessBirthdayMonth.FormattingEnabled = true;
             this.comboBoxGuessBirthdayMonth.Items.AddRange(new object[] {
@@ -323,6 +323,7 @@ namespace BasicFacebookFeatures
             this.buttonGuessYear.Size = new System.Drawing.Size(138, 37);
             this.buttonGuessYear.TabIndex = 67;
             this.buttonGuessYear.Text = "Check Yourself";
+            this.buttonGuessYear.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.buttonGuessYear.UseVisualStyleBackColor = true;
             this.buttonGuessYear.Visible = false;
             this.buttonGuessYear.Click += new System.EventHandler(this.buttonGuessYear_Click);
