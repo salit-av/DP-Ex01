@@ -114,7 +114,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-
         private void showGuessPostYear()
         {
             m_PostToGuess = m_RandomSelector.GetRandomPost();
