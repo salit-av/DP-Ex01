@@ -6,17 +6,15 @@ namespace BasicFacebookFeatures
     {
         private readonly int r_Day;
         private readonly int r_Month;
-        private readonly int r_Year;
 
         internal BirthdayFeature(string i_Birthday)
         {
             string[] birthdayDivide = i_Birthday.Split('/');
 
-            if (birthdayDivide.Length == 3)
+            if (birthdayDivide.Length == 2 || birthdayDivide.Length == 3)
             {
                 r_Month = int.Parse(birthdayDivide[0]);
                 r_Day = int.Parse(birthdayDivide[1]);
-                r_Year = int.Parse(birthdayDivide[2]);
             }
         }
 
