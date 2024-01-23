@@ -91,7 +91,7 @@
   <ItemGroup>
     <Compile Include="BirthdayFeature.cs" />
     <Compile Include="FacebookAuthenticationManager.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

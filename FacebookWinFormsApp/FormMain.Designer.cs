@@ -1,7 +1,6 @@
-﻿
-namespace BasicFacebookFeatures
+﻿namespace BasicFacebookFeatures
 {
-    partial class FormMain
+    internal partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -485,4 +484,3 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Button buttonNewBirthdayGuess;
     }
 }
-
